@@ -72,7 +72,7 @@ Material:
     m_Floats:
     - first:
         name: _BumpIntensity
-      second: 0.31
+      second: 0.44
     - first:
         name: _BumpScale
       second: 1
@@ -90,7 +90,7 @@ Material:
       second: 0.5
     - first:
         name: _Metallic
-      second: 0.64
+      second: 0.49
     - first:
         name: _Mode
       second: 0
@@ -105,13 +105,13 @@ Material:
       second: 32
     - first:
         name: _RimPower
-      second: 3
+      second: 2.6
     - first:
         name: _RimStrength
-      second: 1
+      second: 0.62
     - first:
         name: _Smoothness
-      second: 0
+      second: 0.89
     - first:
         name: _SrcBlend
       second: 1

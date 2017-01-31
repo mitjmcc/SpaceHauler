@@ -2,6 +2,8 @@
 using TeamUtility.IO;
 using System.Collections;
 
+enum MoveState {MOVING, STOPPED}
+
 public class TruckController : MonoBehaviour {
 
     #region PublicVariables
@@ -9,6 +11,10 @@ public class TruckController : MonoBehaviour {
     public Vector2 lookYRestraints;
     public PlayerID player;
 
+    [Range(0f, 70f)]
+    public float maxMovementSpeed;
+    [Range(0f, 70f)]
+    public float warpForce;
     [Range(0f, 200f)]
     public float moveForce;
     [Range(0f, 5f)]
@@ -18,9 +24,9 @@ public class TruckController : MonoBehaviour {
     #endregion
 
     #region PrivateVariables
+    MoveState state = MoveState.STOPPED;
     Rigidbody body;
     Camera cam;
-    Transform model;
     Animator anim;
     Vector3 speed;
     Vector3 forward;
@@ -36,34 +42,48 @@ public class TruckController : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         cam = GetComponentInChildren<Camera>();
         body = GetComponent<Rigidbody>();
-        model = transform.FindChild("Truck");
     }
     #endregion
 
     #region Updates
     void Update() {
-        //Get inputs from the camera inputs
+        // Get inputs from the camera inputs
         lookX += InputManager.GetAxis("LookHorizontal", player) * lookSpeed;
         lookY += InputManager.GetAxis("LookVertical", player) * lookSpeed;
-        //Limit the look axises
+        // Limit the look axises
         lookX = Mathf.Clamp(lookX, lookXRestraints.x, lookXRestraints.y);
         lookY = Mathf.Clamp(lookY, lookYRestraints.x, lookYRestraints.y);
-        //Calculate the rotation using Euler angles,
+        // Calculate the rotation using Euler angles,
         Quaternion rotation = Quaternion.Euler(lookY, lookX, 0);
-        //Set the camera's new rotation
+        // Set the camera's new rotation
         cam.transform.rotation = rotation;
     }
-    #endregion
 
     void FixedUpdate() {
-        //Get move inputs
+        // Get move inputs
         x = InputManager.GetAxis("Vertical", player);
         z = InputManager.GetAxis("Horizontal", player);
-        //Calculate the motion direction vector and scale it by the moveForce
-        speed = (x * body.transform.up + z * body.transform.right) * moveForce;
-        //Add the player's speed to the rigidbody velocity
-        body.velocity += speed;
-        //Drag
-        TCUtil.HorizontalDrag(body, body.velocity, drag);
+        switch (state) {
+            case MoveState.STOPPED:
+                if (InputManager.anyKey)
+                {
+                    state = MoveState.MOVING;
+                    // Initial forward velocity
+                    body.velocity = new Vector3(0, 0, warpForce);
+                }
+                break;
+            case MoveState.MOVING:
+
+                // Calculate the motion direction vector and scale it by the moveForce
+                speed = (x * body.transform.up + z * body.transform.right) * moveForce;
+                // Clamp the speed
+                Vector3.ClampMagnitude(speed, maxMovementSpeed);
+                // Add the player's speed to the rigidbody velocity
+                body.velocity += speed;
+                // Drag
+                TCUtil.HorizontalDrag(body, body.velocity, drag);
+                break;
+        }
     }
+    #endregion
 }
