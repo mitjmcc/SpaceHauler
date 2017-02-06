@@ -35,11 +35,11 @@ public class AsteroidSpawner : MonoBehaviour {
         Vector3 hand = new Vector3(0, 1, 0);
         Vector3 jitter;
         GameObject asteroidTemp, childTemp;
-        for (int j = 0; j < length; j++)
+        for (int k = 1; k < sectors; k++)
         {
-            for (int k = 0; k < sectors; k++)
+            for (int j = 1; j < length; j++)
             {
-                for (int i = 0; i < max; ++i)
+                for (int i = 1; i < max; ++i)
                 {
                     jitter = Vector3.up * Random.Range(-jitterRange, jitterRange)
                         + Vector3.right * Random.Range(-jitterRange, jitterRange);

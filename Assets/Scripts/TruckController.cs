@@ -70,6 +70,9 @@ public class TruckController : MonoBehaviour {
                     state = MoveState.MOVING;
                     // Initial forward velocity
                     body.velocity = new Vector3(0, 0, warpForce);
+
+                    // DEMO nix this
+                    GameObject.Find("WASD").SetActive(false);
                 }
                 break;
             case MoveState.MOVING:

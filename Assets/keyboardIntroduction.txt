@@ -1,0 +1,27 @@
+Over here!
+Thank you for choosing to direct operation Bit.Spike.
+Welcome to our base of operations!
+Let's see if your Director kit is functioning.
+For starters, note the holomap in front of you.
+This allows you to see Bit's location.
+To scroll the holomap, use the WASD keys.
+<ScrollMap>
+Looks like the holomap is working properly.
+To show Bit where to go, use your laser pointer.
+To activate the laser pointer, press the left mouse button.
+<MoveBit>
+Great! Bit received your directions with zero latency.
+Bit has two pistols, which make short work of enemies.
+You can switch to Bit's view at any time.
+To switch to Bit's view, press the TAB key.
+<FirstPerson>
+Check! Your director kit systems are nominal.
+Keep in mind that when you switch to Bit's view,
+you will be facing the direction Bit is facing.
+You can see this in the LIVE FEED on the screen beside mine.
+Got it? Let's try those guns out on the targets ahead.
+<Targets>
+Good shooting!
+With your help, we will clear out those bots in no time.
+When you're ready for a real mission, touch the computer console.
+<LevelEnd>
