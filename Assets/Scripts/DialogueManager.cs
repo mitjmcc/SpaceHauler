@@ -7,9 +7,9 @@ using System.IO;
 /// Dialogue script based on TutorialDirector from Bit.Spike
 /// by Patrick Sewell
 /// </summary>
-public class TutorialDirector : MonoBehaviour {
+public class DialogueManager : MonoBehaviour {
 
-	public static TutorialDirector instance;
+	public static DialogueManager instance;
 
 	public TextAsset introduction;
 	public TextAsset keyboardIntroduction;
@@ -112,9 +112,9 @@ public class TutorialDirector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Director.isGameMode ()) {
-			nextText = Time.time + 0.05f;
-		} else {
+		//if (Director.isGameMode ()) {
+		//	nextText = Time.time + 0.05f;
+		//} else {
 			if (instructions.enabled && current != null) {
 				if (Time.time > nextText) {
 					if (targetText != null) {
@@ -134,6 +134,6 @@ public class TutorialDirector : MonoBehaviour {
 
 				}
 			}
-		}
+		//}
 	}
 }

@@ -94,8 +94,10 @@ Shader "CloverSwatch/BinstonBarrier"
 					intersect = 1 - smoothstep(0, _ProjectionParams.w * 0.5, diff);
 
 				float rim = 1 - abs(dot(i.normal, normalize(i.viewDir))) * 2;
-				float northPole = (i.objectPos.y - 0.45) * 20;
-				float glow = max(max(intersect, rim), northPole);
+				//float northPole = (i.objectPos.y - 0.45) * 20;
+				// Would usually glow more towards top of an object, but tubes are sideways in this game,
+				// so it has weird effects  -Mitch, 1/6/17
+				float glow = /*max(*/max(intersect, rim)/*, northPole)*/;
 
 				fixed4 glowColor = fixed4(lerp(_Color.rgb, fixed3(1, 1, 1), pow(glow, 4)), 1);
 				

@@ -27,7 +27,6 @@ public class CargoHealth : MonoBehaviour {
         {
             SceneManager.LoadScene(0);
         }
-        Debug.Log(cargo);
     }
 
     public void loseCargo()
