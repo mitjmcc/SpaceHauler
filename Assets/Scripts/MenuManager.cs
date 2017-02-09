@@ -6,10 +6,11 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour {
 
 	void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void Tutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
 }

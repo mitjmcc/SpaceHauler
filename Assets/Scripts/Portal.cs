@@ -10,7 +10,7 @@ public class Portal : MonoBehaviour {
     {
         if (other.gameObject.CompareTag(str))
         {
-            other.GetComponent<CargoHealth>().gameOver();
+            LevelManager.instance.gameOver();
         }
     }
 }

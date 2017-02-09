@@ -59,6 +59,7 @@ public class TruckController : MonoBehaviour {
         cam.transform.rotation = rotation;
     }
 
+    Vector3 circleforward = new Vector3(0, 0, 1);
     void FixedUpdate() {
         // Get move inputs
         x = InputManager.GetAxis("Vertical", player);
@@ -76,7 +77,6 @@ public class TruckController : MonoBehaviour {
                 }
                 break;
             case MoveState.MOVING:
-
                 // Calculate the motion direction vector and scale it by the moveForce
                 speed = (x * body.transform.up + z * body.transform.right) * moveForce;
                 // Clamp the speed
@@ -85,8 +85,29 @@ public class TruckController : MonoBehaviour {
                 body.velocity += speed;
                 // Drag
                 TCUtil.HorizontalDrag(body, body.velocity, drag);
+
+                // Change of forward test
+                
+                //circleforward = Quaternion.Euler(0, -.5f, 0) * circleforward;
+                //body.transform.forward = circleforward;
+                //Debug.Log(circleforward);
                 break;
         }
     }
+    #endregion
+
+    #region Methods
+
+    public void shutdown()
+    {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<TruckController>().enabled = false;
+    }
+
+    public void reverse(Vector3 normal)
+    {
+        body.AddForce(-normal * 300 + Vector3.forward * warpForce, ForceMode.Impulse);
+    }
+
     #endregion
 }
