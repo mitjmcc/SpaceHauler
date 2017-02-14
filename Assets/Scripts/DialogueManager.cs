@@ -5,7 +5,6 @@ using System.IO;
 
 /// <summary>
 /// Dialogue script based on TutorialDirector from Bit.Spike
-/// by Patrick Sewell
 /// </summary>
 public class DialogueManager : MonoBehaviour {
 

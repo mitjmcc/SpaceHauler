@@ -85,12 +85,6 @@ public class TruckController : MonoBehaviour {
                 body.velocity += speed;
                 // Drag
                 TCUtil.HorizontalDrag(body, body.velocity, drag);
-
-                // Change of forward test
-                
-                //circleforward = Quaternion.Euler(0, -.5f, 0) * circleforward;
-                //body.transform.forward = circleforward;
-                //Debug.Log(circleforward);
                 break;
         }
     }
