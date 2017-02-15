@@ -47,8 +47,7 @@ public class AsteroidSpawner : MonoBehaviour {
                     jitter = Vector3.up * Random.Range(-jitterRange, jitterRange)
                         + Vector3.right * Random.Range(-jitterRange, jitterRange);
                     float coef = distribution.Evaluate(Random.value);
-                    Debug.Log(coef);
-                    if (coef > minimumAsteroidProbability) {
+                    if (coef > 0) {
                         asteroidTemp = new GameObject("asteroid " + i);
                         asteroidTemp.transform.position = hand * coef * warpTunnelRadius + jitter;
                         asteroidTemp.transform.SetParent(asteroidParent.transform);

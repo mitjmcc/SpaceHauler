@@ -59,7 +59,6 @@ public class TruckController : MonoBehaviour {
         cam.transform.rotation = rotation;
     }
 
-    Vector3 circleforward = new Vector3(0, 0, 1);
     void FixedUpdate() {
         // Get move inputs
         x = InputManager.GetAxis("Vertical", player);
@@ -71,9 +70,6 @@ public class TruckController : MonoBehaviour {
                     state = MoveState.MOVING;
                     // Initial forward velocity
                     body.velocity = new Vector3(0, 0, warpForce);
-
-                    // DEMO nix this
-                    GameObject.Find("WASD").SetActive(false);
                 }
                 break;
             case MoveState.MOVING:
