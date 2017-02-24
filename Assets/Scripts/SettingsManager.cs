@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Serialization;
 
 struct Settings
@@ -9,34 +8,53 @@ struct Settings
     public float fov;
     public bool fullscreen;
     public QualitySettings quality;
+
+    public Settings(float volume, float fov, bool fullscreen, QualitySettings quality)
+    {
+        this.volume = volume;
+        this.fov = fov;
+        this.fullscreen = fullscreen;
+        this.quality = quality;
+    }
 }
 
 public class SettingsManager : MonoBehaviour {
 
+    public Slider fovSlider;
+    public new Camera camera;
+    public Button fullscreenButton;
     Settings settings;
 
 	void Start () {
-		
+        LoadSettings();
 	}
 	
 	void Update () {
 		
 	}
 
+    //LoadSettings can be recoded later to actually use the struct
     public void LoadSettings()
     {
-
+        if (camera != null) {
+            camera.fieldOfView = PlayerPrefs.HasKey("FOV") ? PlayerPrefs.GetFloat("FOV") : 75f;
+        }
+        if (fovSlider != null) {
+            fovSlider.value = PlayerPrefs.HasKey("FOV") ? PlayerPrefs.GetFloat("FOV") : 75f;
+        }
+        int screen = PlayerPrefs.HasKey("FullScreen") ? PlayerPrefs.GetInt("FullScreen") : 0;
+        Screen.fullScreen = (screen == 0) ? false : true;
     }
 
     public void SaveSettings()
     {
-
+ 
     }
 
-    void SetFullScreen(bool full)
+    public void SetFullScreen()
     {
-        settings.fullscreen = full;
-        Screen.fullScreen = settings.fullscreen;
+        Screen.fullScreen = Screen.fullScreen ? false : true;
+        PlayerPrefs.SetInt("FullScreen", Screen.fullScreen ? 1 : 0);
     }
 
     void SetScreenResolution(int i)
@@ -49,8 +67,8 @@ public class SettingsManager : MonoBehaviour {
 
     }
 
-    void setFOV(int fov)
+    public void setFOV()
     {
-
+        PlayerPrefs.SetFloat("FOV", fovSlider.value);
     }
 }

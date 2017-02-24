@@ -12,8 +12,10 @@ public class AsteroidCollision : MonoBehaviour {
         if (other.gameObject.CompareTag(str))
         {
             other.GetComponent<CargoHealth>().loseCargo();
+            other.GetComponent<ShakeObject>().Shake((other.transform.position - transform.position).normalized);
             GetComponent<AudioSource>().pitch += Random.Range(-pitchRange, pitchRange);
             GetComponent<AudioSource>().Play();
+            Destroy(gameObject, .8f);
         }
     }
 }

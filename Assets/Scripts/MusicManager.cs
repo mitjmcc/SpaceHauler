@@ -1,28 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
-
-    public AudioClip[] music;
+    //Adds music files and chooses the track to play
+    public AudioClip[] music;                 
     public AudioSource musicSource;
     public int track = 0;
     public bool loopSingle;
+    public Slider slider;
 
     private Settings settings;
-
     void Start()
     {
-        track = track % music.Length;
-        musicSource.clip = music[track];
-        musicSource.Play();
+        float vol = PlayerPrefs.HasKey("Volume") ? PlayerPrefs.GetFloat("Volume") : .5f;
+        settings = new global::Settings(vol, 0f, false, null);
+        slider.value = vol;
+        if (music.Length > 0)
+        {
+            track = track % music.Length;
+            musicSource.clip = music[track];
+            musicSource.Play();
+        }
     }
 
     void Update()
     {
-        if (!musicSource.isPlaying)
+        if (!musicSource.isPlaying && music.Length > 0)
         {
             if (!loopSingle)
             {
@@ -34,4 +41,9 @@ public class MusicManager : MonoBehaviour
         musicSource.volume = settings.volume;
     }
 
+    public void setVolume()
+    {
+        settings.volume = slider.value;
+        PlayerPrefs.SetFloat("Volume", slider.value);
+    }
 }
