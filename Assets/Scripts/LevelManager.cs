@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour {
 
     public static LevelManager instance;
-    public Text GameOver, Restart;
+    public Text GameOver, Restart, Dialogue;
 
     GameObject Player;
     Scene menu;
@@ -41,6 +41,7 @@ public class LevelManager : MonoBehaviour {
         Player.GetComponent<TruckController>().shutdown();
         GameOver.gameObject.SetActive(true);
         Restart.gameObject.SetActive(true);
+        Dialogue.gameObject.SetActive(false);
         gameover = true;
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
 
@@ -23,7 +21,7 @@ struct Settings
 public class SettingsManager : MonoBehaviour {
 
     public Slider fovSlider;
-    public Camera camera;
+    public new Camera camera;
     public Button fullscreenButton;
     Settings settings;
 

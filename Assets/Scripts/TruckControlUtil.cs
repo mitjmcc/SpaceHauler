@@ -2,7 +2,8 @@
 using System.Collections;
 
 //Player Controller Utilities
-public class TCUtil {
+public class TCUtil
+{
 
     public static Vector3 XZPlane = new Vector3(1, 0, 1);
 
@@ -29,5 +30,32 @@ public class TCUtil {
         velocity.x *= 1 - drag;
         velocity.y *= 1 - drag;
         body.velocity = velocity;
+    }
+
+    public static Vector2 CartesionToPolar(Vector3 point)
+    {
+        Vector2 polar = Vector3.zero;
+
+        //Calaculate the longitude
+        polar.y = Mathf.Atan2(point.x, point.z);
+
+        //Calculate the length of XZ
+        float XZ = new Vector2(point.x, point.z).magnitude;
+
+        //Convert
+        polar.x = Mathf.Atan2(-point.z, XZ);
+
+        //Convert to degrees
+        polar *= Mathf.Rad2Deg;
+
+        return polar;
+    }
+
+    //Uses some weird default parameter thing I found
+    public static Vector3 PolarToCartesion(Vector3 polar, Vector3? forward = null) 
+    {
+        Vector3 f = forward ?? Vector3.forward;
+        Vector2 c = polar.x * (Vector2.right * Mathf.Cos(polar.y) + Vector2.up * Mathf.Sin(polar.y));
+        return c;
     }
 }

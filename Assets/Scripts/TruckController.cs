@@ -7,18 +7,21 @@ enum MoveState {MOVING, STOPPED}
 public class TruckController : MonoBehaviour {
 
     #region PublicVariables
+    public PlayerID player;
+    [Header("Camera Options")]
     public Vector2 lookXRestraints;
     public Vector2 lookYRestraints;
-    public PlayerID player;
+    [Range(0f, 5f)]
+    public float lookSpeed;
 
-    [Range(0f, 70f)]
-    public float maxMovementSpeed;
+    [Header("Physics Options")]
+    public Vector2 truckAltitudeRestraints;
+    [Range(0f, 1f)]
+    public float maxRotationSpeed;
     [Range(0f, 70f)]
     public float warpForce;
     [Range(0f, 200f)]
     public float moveForce;
-    [Range(0f, 5f)]
-    public float lookSpeed;
     [Range(0f, 1f)]
     public float drag = .1f;
     #endregion
@@ -28,8 +31,9 @@ public class TruckController : MonoBehaviour {
     Rigidbody body;
     Camera cam;
     Animator anim;
-    Vector3 speed;
-    Vector3 forward;
+    Vector3 position;
+    Vector3 polarSpeed;
+    Vector3 polarPosition;
 
     float lookX;
     float lookY;
@@ -42,6 +46,7 @@ public class TruckController : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         cam = GetComponentInChildren<Camera>();
         body = GetComponent<Rigidbody>();
+        polarPosition = new Vector3(0, 90, 0);
     }
     #endregion
 
@@ -56,29 +61,47 @@ public class TruckController : MonoBehaviour {
         // Calculate the rotation using Euler angles,
         Quaternion rotation = Quaternion.Euler(lookY, lookX, 0);
         // Set the camera's new rotation
-        cam.transform.rotation = rotation;
+        cam.transform.localRotation = rotation;
     }
 
     void FixedUpdate() {
         // Get move inputs
-        x = InputManager.GetAxis("Vertical", player);
-        z = InputManager.GetAxis("Horizontal", player);
+        x = InputManager.GetAxis("Horizontal", player);
+        y = InputManager.GetAxis("Vertical", player);
         switch (state) {
             case MoveState.STOPPED:
                 if (InputManager.anyKey)
                 {
                     state = MoveState.MOVING;
                     // Initial forward velocity
-                    body.velocity = new Vector3(0, 0, warpForce);
+                    //body.velocity = new Vector3(0, 0, warpForce);
                 }
                 break;
             case MoveState.MOVING:
+                //TODO: Fix speed and up normal
+                polarSpeed.y = -x / 2;
+
+                polarSpeed.x = y;
+
+                polarSpeed *= moveForce * Time.fixedDeltaTime;
+
+                polarSpeed.y = Mathf.Clamp(polarSpeed.y, -maxRotationSpeed, maxRotationSpeed);
+
+                polarPosition += polarSpeed;
+
+                polarPosition.x = Mathf.Clamp(polarPosition.x, truckAltitudeRestraints.x, truckAltitudeRestraints.y);
+
+                position = TCUtil.PolarToCartesion(polarPosition, Vector3.forward * 25);
+
+                transform.localRotation = Quaternion.LookRotation(Vector3.forward, position.normalized);
+                transform.localPosition = position ;
+
                 // Calculate the motion direction vector and scale it by the moveForce
-                speed = (x * body.transform.up + z * body.transform.right) * moveForce;
+                //speed = (x * body.transform.up + z * body.transform.right) * moveForce;
                 // Clamp the speed
-                Vector3.ClampMagnitude(speed, maxMovementSpeed);
+                //Vector3.ClampMagnitude(speed, maxMovementSpeed);
                 // Add the player's speed to the rigidbody velocity
-                body.velocity += speed;
+                //body.velocity += speed;
                 // Drag
                 TCUtil.HorizontalDrag(body, body.velocity, drag);
                 break;

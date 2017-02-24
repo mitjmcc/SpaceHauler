@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 
+    public string tutorial;
     public GameObject mainScreen;
     public GameObject optionsScreen;
 
@@ -16,7 +17,7 @@ public class MenuManager : MonoBehaviour {
 
     public void Tutorial()
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene(tutorial);
     }
 
     public void Options()
