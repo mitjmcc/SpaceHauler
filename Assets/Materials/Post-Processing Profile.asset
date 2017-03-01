@@ -31,12 +31,12 @@ MonoBehaviour:
       fxaaSettings:
         preset: 2
       taaSettings:
-        jitterSpread: 0.689
-        sharpen: 0.3
+        jitterSpread: 0.157
+        sharpen: 0
         stationaryBlending: 0.95
-        motionBlending: 0.85
+        motionBlending: 0.123
   ambientOcclusion:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       intensity: 0.83
       radius: 1.71
@@ -51,7 +51,7 @@ MonoBehaviour:
       reflection:
         blendType: 0
         reflectionQuality: 2
-        maxDistance: 100
+        maxDistance: 37
         iterationCount: 256
         stepSize: 3
         widthModifier: 0.5
@@ -63,7 +63,7 @@ MonoBehaviour:
         fresnelFade: 1
         fresnelFadePower: 1
       screenEdgeMask:
-        intensity: 0.03
+        intensity: 0.177
   depthOfField:
     m_Enabled: 0
     m_Settings:

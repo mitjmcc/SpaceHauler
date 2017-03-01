@@ -3,6 +3,7 @@ using System.Collections;
 
 public class AsteroidSpawner : MonoBehaviour {
 
+    [Header("Warp Tunnel Dimensions")]
     [Range(0f, 100f)]
     public float warpTunnelRadius = 50f;
     [Range(0f, 1f)]
@@ -12,7 +13,8 @@ public class AsteroidSpawner : MonoBehaviour {
     public int sectors = 8;
     public int jitterRange = 10;
     public int lengthBetweenDisks;
-    
+
+    [Header("Asteroid Options")]
     public GameObject[] asteroids;
     public AnimationCurve distribution;
     public Material asteroidMaterial;
@@ -45,7 +47,8 @@ public class AsteroidSpawner : MonoBehaviour {
                 for (int i = 1; i < max; ++i)
                 {
                     jitter = Vector3.up * Random.Range(-jitterRange, jitterRange)
-                        + Vector3.right * Random.Range(-jitterRange, jitterRange);
+                        + Vector3.right * Random.Range(-jitterRange, jitterRange)
+                        + Vector3.forward * Random.Range(-jitterRange, jitterRange);
                     float coef = distribution.Evaluate(Random.value);
                     if (coef > 0) {
                         asteroidTemp = new GameObject("asteroid " + i);
@@ -63,17 +66,5 @@ public class AsteroidSpawner : MonoBehaviour {
             }
             hand += Vector3.forward * lengthBetweenDisks;
         }
-    }
-
-    void FixedUpdate()
-    {
-        //foreach (GameObject g in asteroidObjects)
-        //{
-        //    Graphics.DrawMesh(asteroidMesh,
-        //        g.transform.position,
-        //        Random.rotation,
-        //        asteroidMaterial,
-        //        0);
-        //}
     }
 }
