@@ -43,7 +43,9 @@ public class SettingsManager : MonoBehaviour {
             fovSlider.value = PlayerPrefs.HasKey("FOV") ? PlayerPrefs.GetFloat("FOV") : 75f;
         }
         int screen = PlayerPrefs.HasKey("FullScreen") ? PlayerPrefs.GetInt("FullScreen") : 0;
+        int quality = PlayerPrefs.HasKey("QualityLevel") ? PlayerPrefs.GetInt("QualityLevel") : 5;
         Screen.fullScreen = (screen == 0) ? false : true;
+        QualitySettings.SetQualityLevel(quality);
     }
 
     public void SaveSettings()
@@ -53,7 +55,7 @@ public class SettingsManager : MonoBehaviour {
 
     public void SetFullScreen()
     {
-        Screen.fullScreen = Screen.fullScreen ? false : true;
+        Screen.fullScreen = !Screen.fullScreen;
         PlayerPrefs.SetInt("FullScreen", Screen.fullScreen ? 1 : 0);
     }
 
@@ -62,9 +64,10 @@ public class SettingsManager : MonoBehaviour {
         Screen.SetResolution(Screen.resolutions[i].width, Screen.resolutions[i].height, settings.fullscreen);
     }
 
-    void SetQuality()
+    public void SetQuality(int i)
     {
-
+        QualitySettings.SetQualityLevel(i);
+        PlayerPrefs.SetInt("QualityLevel", i);
     }
 
     public void setFOV()
