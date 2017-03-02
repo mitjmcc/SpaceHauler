@@ -60,6 +60,7 @@ namespace YeggQuest.NS_Spline
             GetComponent<MeshCollider>().sharedMaterial = nodeCollisionMaterial;
             GetComponent<MeshCollider>().enabled = solid;
 
+
             hasGeneratedOnce = true;
         }
 
@@ -68,7 +69,9 @@ namespace YeggQuest.NS_Spline
             base.Teardown();
 
             if (hasGeneratedOnce)
+            {
                 DestroyImmediate(GetComponent<MeshFilter>().sharedMesh);
+            }
         }
     }
 }

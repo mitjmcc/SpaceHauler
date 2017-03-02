@@ -25,10 +25,11 @@ public class TCUtil
         }
     }
 
-    public static void HorizontalDrag(Rigidbody body, Vector3 velocity, float drag)
+    public static void Drag(Rigidbody body, Vector3 velocity, float drag)
     {
         velocity.x *= 1 - drag;
         velocity.y *= 1 - drag;
+        velocity.z *= 1 - drag;
         body.velocity = velocity;
     }
 
@@ -54,7 +55,6 @@ public class TCUtil
     //Uses some weird default parameter thing I found
     public static Vector3 PolarToCartesion(Vector3 polar, Vector3? forward = null) 
     {
-        Vector3 f = forward ?? Vector3.forward;
         Vector2 c = polar.x * (Vector2.right * Mathf.Cos(polar.y) + Vector2.up * Mathf.Sin(polar.y));
         return c;
     }

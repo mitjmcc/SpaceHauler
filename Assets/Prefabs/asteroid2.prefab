@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 136499363408697700}
   - component: {fileID: 114391884541292620}
   - component: {fileID: 82886270783645436}
+  - component: {fileID: 114526635221253896}
   m_Layer: 0
   m_Name: asteroid2
   m_TagString: Untagged
@@ -202,6 +203,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8067aa0db05afc742a86b1a8c345c48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114526635221253896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013424997516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393f008fa424322409172f0dcef5a3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136499363408697700
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -210,7 +222,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1000013424997516}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 1.4474628
   m_Height: 4.6856
   m_Direction: 2

@@ -15,9 +15,7 @@ public class TruckController : MonoBehaviour {
     public float lookSpeed;
 
     [Header("Physics Options")]
-    public Vector2 truckAltitudeRestraints;
-    [Range(0f, 1f)]
-    public float maxRotationSpeed;
+    public float maxMovementSpeed;
     [Range(0f, 70f)]
     public float warpForce;
     [Range(0f, 200f)]
@@ -32,8 +30,7 @@ public class TruckController : MonoBehaviour {
     Camera cam;
     Animator anim;
     Vector3 position;
-    Vector3 polarSpeed;
-    Vector3 polarPosition;
+    Vector3 speed;
 
     float lookX;
     float lookY;
@@ -46,7 +43,6 @@ public class TruckController : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         cam = GetComponentInChildren<Camera>();
         body = GetComponent<Rigidbody>();
-        polarPosition = new Vector3(0, 90, 0);
     }
     #endregion
 
@@ -66,8 +62,8 @@ public class TruckController : MonoBehaviour {
 
     void FixedUpdate() {
         // Get move inputs
-        x = InputManager.GetAxis("Horizontal", player);
-        y = InputManager.GetAxis("Vertical", player);
+        x = getHorizontal();
+        y = getVetical();
         switch (state) {
             case MoveState.STOPPED:
                 if (InputManager.anyKey)
@@ -78,38 +74,31 @@ public class TruckController : MonoBehaviour {
                 }
                 break;
             case MoveState.MOVING:
-                //TODO: Fix speed and up normal
-                polarSpeed.y = -x / 2;
-
-                polarSpeed.x = y;
-
-                polarSpeed *= moveForce * Time.fixedDeltaTime;
-
-                polarSpeed.y = Mathf.Clamp(polarSpeed.y, -maxRotationSpeed, maxRotationSpeed);
-
-                polarPosition += polarSpeed;
-
-                polarPosition.x = Mathf.Clamp(polarPosition.x, truckAltitudeRestraints.x, truckAltitudeRestraints.y);
-
-                position = TCUtil.PolarToCartesion(polarPosition, Vector3.forward * 25);
-
-                transform.localRotation = Quaternion.LookRotation(Vector3.forward, position.normalized);
-                transform.localPosition = position ;
-
                 // Calculate the motion direction vector and scale it by the moveForce
-                //speed = (x * body.transform.up + z * body.transform.right) * moveForce;
+                speed = (x * transform.parent.right + y * transform.parent.up) * moveForce;
                 // Clamp the speed
-                //Vector3.ClampMagnitude(speed, maxMovementSpeed);
+                speed = Vector3.ClampMagnitude(speed, maxMovementSpeed);
                 // Add the player's speed to the rigidbody velocity
                 //body.velocity += speed;
+                body.AddRelativeForce(speed, ForceMode.VelocityChange);
                 // Drag
-                TCUtil.HorizontalDrag(body, body.velocity, drag);
+                TCUtil.Drag(body, body.velocity, drag);
                 break;
         }
     }
     #endregion
 
     #region Methods
+
+    float getHorizontal()
+    {
+        return InputManager.GetAxisRaw("Horizontal", player);
+    }
+
+    float getVetical()
+    {
+        return InputManager.GetAxisRaw("Vertical", player);
+    }
 
     public void shutdown()
     {

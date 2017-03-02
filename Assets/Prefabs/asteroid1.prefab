@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 135175307003640716}
   - component: {fileID: 114488459757147016}
   - component: {fileID: 82878500914178068}
+  - component: {fileID: 114191422921362032}
   m_Layer: 0
   m_Name: asteroid1
   m_TagString: Untagged
@@ -330,6 +331,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114191422921362032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010971820650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393f008fa424322409172f0dcef5a3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114488459757147016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -349,7 +361,7 @@ SphereCollider:
   m_GameObject: {fileID: 1000010971820650}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 1.3100529
   m_Center: {x: 0, y: 0, z: 0}
