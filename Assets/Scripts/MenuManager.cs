@@ -7,6 +7,11 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour {
 
     public string tutorial;
+    public string level1;
+    public string level2;
+    public string level3;
+    public string level4;
+    public string level5;
     public GameObject mainScreen;
     public GameObject optionsScreen;
     public GameObject qualityScreen;
@@ -19,6 +24,41 @@ public class MenuManager : MonoBehaviour {
     }
 
     public void Tutorial()
+    {
+        levelsScreen.SetActive(false);
+        loadingScreen.SetActive(true);
+        SceneManager.LoadScene(tutorial);
+    }
+
+    public void Level1()
+    {
+        levelsScreen.SetActive(false);
+        loadingScreen.SetActive(true);
+        SceneManager.LoadScene(tutorial);
+    }
+
+    public void Level2()
+    {
+        levelsScreen.SetActive(false);
+        loadingScreen.SetActive(true);
+        SceneManager.LoadScene(tutorial);
+    }
+
+    public void Level3()
+    {
+        levelsScreen.SetActive(false);
+        loadingScreen.SetActive(true);
+        SceneManager.LoadScene(tutorial);
+    }
+
+    public void Level4()
+    {
+        levelsScreen.SetActive(false);
+        loadingScreen.SetActive(true);
+        SceneManager.LoadScene(tutorial);
+    }
+
+    public void Level5()
     {
         levelsScreen.SetActive(false);
         loadingScreen.SetActive(true);

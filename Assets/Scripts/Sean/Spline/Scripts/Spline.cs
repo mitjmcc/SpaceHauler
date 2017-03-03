@@ -80,7 +80,8 @@ namespace YeggQuest.NS_Spline
         // which contains the desired parametrized time [0-1] on the spline and some additional interpolation settings.
         // This function then returns a SplineLerpResult which contains all of the interpolated information.
 
-        internal SplineLerpResult Lerp(Transform root, SplineLerpQuery query)
+        internal SplineLerpResult
+            Lerp(Transform root, SplineLerpQuery query)
         {
             // Failsafe - if this spline is degenerate, just return the first point and don't do any other interpolation
 
@@ -159,6 +160,9 @@ namespace YeggQuest.NS_Spline
 
             return result;
         }
+
+        // A different way to get a Lerp
+
 
         // Gets the entrance into the spline.
 

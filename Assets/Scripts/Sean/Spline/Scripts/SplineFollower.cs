@@ -28,9 +28,14 @@ namespace YeggQuest.NS_Spline
         public SplineMovementSmoothing movementSmoothing;
         public bool rotationSmoothing = true;
 
+        bool playing;
+
         void Update()
         {
             if (wrapper == null)
+                return;
+
+            if (!playing)
                 return;
 
             float t = (Application.isPlaying ? Time.time + movementSync : 0);
@@ -120,6 +125,11 @@ namespace YeggQuest.NS_Spline
             scale = Mathf.Max(scale, 0);
 
             return Mathf.SmoothStep(0, 1, scale);
+        }
+
+        public void Playing(bool play)
+        {
+            playing = play;
         }
     }
 }

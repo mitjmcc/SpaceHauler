@@ -34,5 +34,12 @@ public class CargoHealth : MonoBehaviour {
         }
     }
 
-    
+    public void gainCargo()
+    {
+        if (cargo > 0 && cargo < cargoImages.Length)
+        {
+            cargoImages[cargo + 1].gameObject.SetActive(false);
+            cargo++;
+        }
+    }
 }
