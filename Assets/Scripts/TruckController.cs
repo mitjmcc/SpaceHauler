@@ -31,6 +31,7 @@ public class TruckController : MonoBehaviour {
     Animator anim;
     Vector3 position;
     Vector3 speed;
+    YeggQuest.NS_Spline.SplineFollower follower;
 
     float lookX;
     float lookY;
@@ -43,6 +44,8 @@ public class TruckController : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         cam = GetComponentInChildren<Camera>();
         body = GetComponent<Rigidbody>();
+        follower = GetComponentInParent<YeggQuest.NS_Spline.SplineFollower>();
+        follower.Playing(false);
     }
     #endregion
 
@@ -68,6 +71,7 @@ public class TruckController : MonoBehaviour {
             case MoveState.STOPPED:
                 if (InputManager.anyKey)
                 {
+                    follower.Playing(true);
                     state = MoveState.MOVING;
                     // Initial forward velocity
                     //body.velocity = new Vector3(0, 0, warpForce);
