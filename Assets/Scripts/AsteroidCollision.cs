@@ -7,6 +7,11 @@ public class AsteroidCollision : MonoBehaviour {
     string str = "Player";
     float pitchRange = .2f;
 
+    private void Awake()
+    {
+        GetComponent<Collider>().enabled = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(str))
