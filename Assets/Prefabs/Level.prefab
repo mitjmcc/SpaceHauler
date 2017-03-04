@@ -6300,6 +6300,7 @@ MonoBehaviour:
   GameOver: {fileID: 114222819591986026}
   Restart: {fileID: 114556719689093872}
   Dialogue: {fileID: 114541863082274774}
+  loadingScreen: {fileID: 0}
 --- !u!114 &114739529588002058
 MonoBehaviour:
   m_ObjectHideFlags: 1
