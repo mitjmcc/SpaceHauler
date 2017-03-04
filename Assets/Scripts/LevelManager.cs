@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour {
 
     public static LevelManager instance;
     public Text GameOver, Restart, Dialogue;
+    public GameObject loadingScreen;
 
     GameObject Player;
     Scene menu;
@@ -28,11 +29,13 @@ public class LevelManager : MonoBehaviour {
 
     public void restart()
     {
+        loadingScreen.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void backToMenu()
     {
+        loadingScreen.SetActive(true);
         SceneManager.LoadScene("MainMenu");
     }
 
