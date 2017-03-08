@@ -69,12 +69,11 @@ public class TruckController : MonoBehaviour {
         y = getVetical();
         switch (state) {
             case MoveState.STOPPED:
+                // Exit the intro when the player gives input
                 if (InputManager.anyKey)
                 {
                     follower.Playing(true);
                     state = MoveState.MOVING;
-                    // Initial forward velocity
-                    //body.velocity = new Vector3(0, 0, warpForce);
                 }
                 break;
             case MoveState.MOVING:
@@ -82,8 +81,7 @@ public class TruckController : MonoBehaviour {
                 speed = (x * transform.parent.right + y * transform.parent.up) * moveForce;
                 // Clamp the speed
                 speed = Vector3.ClampMagnitude(speed, maxMovementSpeed);
-                // Add the player's speed to the rigidbody velocity
-                //body.velocity += speed;
+                // Add the player's speed to the rigidbody velocity relative to the parent
                 body.AddRelativeForce(speed, ForceMode.VelocityChange);
                 // Drag
                 TCUtil.Drag(body, body.velocity, drag);
