@@ -30,7 +30,7 @@ namespace YeggQuest.NS_Spline
 
         bool playing;
 
-        void Update()
+        void FixedUpdate()
         {
             if (wrapper == null)
                 return;

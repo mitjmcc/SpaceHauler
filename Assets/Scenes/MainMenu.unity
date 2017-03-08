@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0041275294, g: 0.023046441, b: 0.12031906, a: 1}
+  m_IndirectSpecularColor: {r: 0.004122024, g: 0.023070166, b: 0.12038659, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2129,10 +2129,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d2aac0e6cad774a9af947e4b1fcd4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: []
+  music:
+  - {fileID: 8300000, guid: abf9ce095386fab408100daf513cd38e, type: 3}
+  - {fileID: 8300000, guid: 6cde6ff287ebf444b98efcd3e694e24f, type: 3}
   musicSource: {fileID: 658156716}
   track: 0
-  loopSingle: 0
+  loopSingle: 1
+  firstElementIntro: 0
   slider: {fileID: 1487941937}
 --- !u!4 &658156718
 Transform:
