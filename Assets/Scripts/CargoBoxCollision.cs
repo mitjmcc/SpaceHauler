@@ -12,7 +12,6 @@ public class CargoBoxCollision : MonoBehaviour {
         if (other.gameObject.CompareTag(str))
         {
             other.GetComponent<CargoHealth>().gainCargo();
-            other.GetComponent<ShakeObject>().Shake((other.transform.position - transform.position).normalized);
             GetComponent<AudioSource>().pitch += Random.Range(-pitchRange, pitchRange);
             GetComponent<AudioSource>().Play();
             Destroy(gameObject, .8f);

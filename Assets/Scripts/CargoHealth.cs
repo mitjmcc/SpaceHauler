@@ -7,21 +7,22 @@ using UnityEngine.SceneManagement;
 public class CargoHealth : MonoBehaviour {
 
     //Might move this
-    public Image[] cargoImages;
-    
+    public Text cargoText;
 
-    int cargo;
+    int cargo = 3;
+    bool diedOnce;
 
-	// Use this for initialization
-	void Start () {
-        cargo = cargoImages.Length;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (cargo <= 0)
+    private void Awake()
+    {
+        cargoText.text = string.Concat("x", cargo);
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if (cargo <= 0 && !diedOnce)
         {
             LevelManager.instance.gameOver();
+            diedOnce = true;
         }
     }
 
@@ -29,17 +30,17 @@ public class CargoHealth : MonoBehaviour {
     {
         if (cargo > 0)
         {
-            cargoImages[cargo - 1].gameObject.SetActive(false);
             cargo--;
+            cargoText.text = string.Concat("x", cargo);
         }
     }
 
     public void gainCargo()
     {
-        if (cargo > 0 && cargo < cargoImages.Length)
+        if (cargo > 0)
         {
-            cargoImages[cargo + 1].gameObject.SetActive(false);
             cargo++;
+            cargoText.text = string.Concat("x", cargo);
         }
     }
 }

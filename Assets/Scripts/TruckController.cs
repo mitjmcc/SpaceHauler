@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using TeamUtility.IO;
+using YeggQuest.NS_Spline;
 using System.Collections;
 
-enum MoveState {MOVING, STOPPED}
+enum MoveState {MOVING, STOPPED, END}
 
 public class TruckController : MonoBehaviour {
 
@@ -31,17 +32,16 @@ public class TruckController : MonoBehaviour {
     Animator anim;
     Vector3 position;
     Vector3 speed;
-    YeggQuest.NS_Spline.SplineFollower follower;
+    SplineFollower follower;
 
     float lookX;
     float lookY;
-    float x, y, z;
+    float x, y, z, t;
     #endregion
 
     #region Initialization
     // Use this for initialization
     void Start () {
-        Cursor.lockState = CursorLockMode.Locked;
         cam = GetComponentInChildren<Camera>();
         body = GetComponent<Rigidbody>();
         follower = GetComponentInParent<YeggQuest.NS_Spline.SplineFollower>();
@@ -51,16 +51,26 @@ public class TruckController : MonoBehaviour {
 
     #region Updates
     void Update() {
-        // Get inputs from the camera inputs
-        lookX += InputManager.GetAxis("LookHorizontal", player) * lookSpeed;
-        lookY += InputManager.GetAxis("LookVertical", player) * lookSpeed;
-        // Limit the look axises
-        lookX = Mathf.Clamp(lookX, lookXRestraints.x, lookXRestraints.y);
-        lookY = Mathf.Clamp(lookY, lookYRestraints.x, lookYRestraints.y);
-        // Calculate the rotation using Euler angles,
-        Quaternion rotation = Quaternion.Euler(lookY, lookX, 0);
-        // Set the camera's new rotation
-        cam.transform.localRotation = rotation;
+        switch (state)
+        {
+            case MoveState.END:
+                // At end of level reset camera rotationn
+                //cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation,
+                //    Quaternion.Euler(0, 0, 0), .1f);
+                break;
+            default:
+                // Get inputs from the camera inputs
+                lookX += InputManager.GetAxis("LookHorizontal", player) * lookSpeed;
+                lookY += InputManager.GetAxis("LookVertical", player) * lookSpeed;
+                // Limit the look axises
+                lookX = Mathf.Clamp(lookX, lookXRestraints.x, lookXRestraints.y);
+                lookY = Mathf.Clamp(lookY, lookYRestraints.x, lookYRestraints.y);
+                // Calculate the rotation using Euler angles,
+                Quaternion rotation = Quaternion.Euler(lookY, lookX, 0);
+                // Set the camera's new rotation
+                cam.transform.localRotation = rotation;
+                break;
+        }
     }
 
     void FixedUpdate() {
@@ -85,6 +95,12 @@ public class TruckController : MonoBehaviour {
                 body.AddRelativeForce(speed, ForceMode.VelocityChange);
                 // Drag
                 TCUtil.Drag(body, body.velocity, drag);
+                // Adjust forward
+                transform.localRotation = Quaternion.Lerp(transform.localRotation,
+                    Quaternion.LookRotation(follower.getCurrentTangent()), .01f);
+                break;
+            case MoveState.END:
+
                 break;
         }
     }
@@ -104,8 +120,9 @@ public class TruckController : MonoBehaviour {
 
     public void shutdown()
     {
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<TruckController>().enabled = false;
+        state = MoveState.END;
+        body.velocity = Vector3.zero;
+        follower.enabled = false;
     }
 
     public void reverse(Vector3 normal)
