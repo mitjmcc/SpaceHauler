@@ -6,11 +6,12 @@ using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
-    //Adds music files and chooses the track to play
+    // Adds music files and chooses the track to play
     public AudioClip[] music;                 
     public AudioSource musicSource;
     public int track = 0;
     public bool loopSingle;
+    public bool firstElementIntro;
     public Slider slider;
 
     private Settings settings;
@@ -33,7 +34,11 @@ public class MusicManager : MonoBehaviour
         {
             if (!loopSingle)
             {
-                track = (track + 1) % music.Length;
+                // Clamp the tracks to everything but the first when it's an intro
+                track = firstElementIntro
+                    ? Mathf.Clamp((track + 1) % music.Length, 1, music.Length - 1)
+                    : (track + 1) % music.Length;
+                Debug.Log(track);
             }
             musicSource.clip = music[track];
             musicSource.Play();

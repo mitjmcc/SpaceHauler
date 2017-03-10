@@ -29,8 +29,9 @@ namespace YeggQuest.NS_Spline
         public bool rotationSmoothing = true;
 
         bool playing;
+        SplineLerpResult result;
 
-        void Update()
+        void FixedUpdate()
         {
             if (wrapper == null)
                 return;
@@ -40,8 +41,8 @@ namespace YeggQuest.NS_Spline
 
             float t = (Application.isPlaying ? Time.time + movementSync : 0);
             float scale = (Application.isPlaying ? FollowScale(t) : 1);
-            SplineLerpResult result = FollowLerp(t);
-            
+            result = FollowLerp(t);
+
             transform.position = result.worldPosition;
             transform.rotation = Quaternion.Euler(result.worldRotation);
             transform.localScale = Vector3.one * scale;
@@ -130,6 +131,15 @@ namespace YeggQuest.NS_Spline
         public void Playing(bool play)
         {
             playing = play;
+        }
+
+        /// <summary>
+        /// Method to get the tangent of the most
+        /// recent SplineLerpResult in PlayMode
+        /// </summary>
+        public Vector3 getCurrentTangent()
+        {
+            return result.tangent;
         }
     }
 }
