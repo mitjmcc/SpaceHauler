@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour {
 
     public static LevelManager instance;
-    public Text GameOver, Restart, Dialogue;
-    public GameObject loadingScreen;
+    public Text Restart, Dialogue;
+    public GameObject GameOver, loadingScreen, DialogueManager;
 
     GameObject Player;
     Scene menu;
@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour {
 
     void Start () {
         instance = this;
+        Cursor.lockState = CursorLockMode.Locked;
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 	
@@ -42,9 +43,26 @@ public class LevelManager : MonoBehaviour {
     public void gameOver()
     {
         Player.GetComponent<TruckController>().shutdown();
-        GameOver.gameObject.SetActive(true);
-        Restart.gameObject.SetActive(true);
+        StartCoroutine(DelayedAnimation(Player.
+            GetComponentInChildren<Camera>().GetComponent<Animation>(),
+            "DollyIn", 1f));
+        StartCoroutine(gameOverGUI(2f));
         Dialogue.gameObject.SetActive(false);
+        DialogueManager.SetActive(false);
+
         gameover = true;
+    }
+
+    private IEnumerator DelayedAnimation(Animation a, string anim, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        a.Play(anim, PlayMode.StopAll);
+    }
+
+    private IEnumerator gameOverGUI(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GameOver.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
     }
 }

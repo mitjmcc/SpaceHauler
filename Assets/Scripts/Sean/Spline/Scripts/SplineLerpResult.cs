@@ -11,6 +11,7 @@ namespace YeggQuest.NS_Spline
     {
         public Vector3 worldPosition;       // the interpolated world position on the spline
         public Vector3 worldRotation;       // the interpolated world rotation
+        public Vector3 tangent;             // the interpolated tangent
         public float fieldOfView;           // the interpolated field of view (for cameras following splines)
     }
 }

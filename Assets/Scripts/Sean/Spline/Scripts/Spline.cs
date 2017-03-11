@@ -157,7 +157,8 @@ namespace YeggQuest.NS_Spline
             SplineNode e = nodes[section + 1];
             result.worldRotation = Vector3.Lerp(s.worldOrientation, e.worldOrientation, v);
             result.fieldOfView = Mathf.Lerp(s.fieldOfView, e.fieldOfView, v);
-
+            result.tangent = vertices[section, Mathf.Clamp(segment + 1, 0, segmentCount)] - vertices[section, Mathf.Clamp(segment - 1, 0, segmentCount)];
+            
             return result;
         }
 

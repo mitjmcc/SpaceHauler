@@ -2134,8 +2134,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6cde6ff287ebf444b98efcd3e694e24f, type: 3}
   musicSource: {fileID: 658156716}
   track: 0
-  loopSingle: 1
-  firstElementIntro: 0
+  loopSingle: 0
+  firstElementIntro: 1
   slider: {fileID: 1487941937}
 --- !u!4 &658156718
 Transform:
