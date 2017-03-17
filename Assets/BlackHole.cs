@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BlackHole : MonoBehaviour {
+    public float strength;
+    public float deathDistance = 50f;
     private float force;
     private Vector3 pull;
     private Vector3 dir;
@@ -22,7 +24,12 @@ public class BlackHole : MonoBehaviour {
         if (other.gameObject.CompareTag("Player"))
         {
             pull = transform.position - other.GetComponent<Rigidbody>().position;
-            force = 2000/pull.magnitude;
+            if (pull.magnitude < deathDistance)
+            {
+                LevelManager.instance.gameOver();
+                return;
+            }
+            force = strength / pull.magnitude;
             dir = pull.normalized;
             other.gameObject.GetComponent<Rigidbody>().AddForce(force * dir, ForceMode.Force);
         }

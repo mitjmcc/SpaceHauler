@@ -49,7 +49,7 @@ Material:
         name: _MainTex
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
@@ -71,6 +71,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
+        name: _BumpIntensity
+      second: 1
+    - first:
         name: _BumpScale
       second: 1
     - first:
@@ -87,7 +90,7 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 0.156
+      second: 0.095
     - first:
         name: _GlossyReflections
       second: 1
@@ -103,6 +106,15 @@ Material:
     - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _RimPower
+      second: 8
+    - first:
+        name: _RimStrength
+      second: 0
+    - first:
+        name: _Smoothness
+      second: 0.207
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -125,3 +137,6 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _RimColor
+      second: {r: 1, g: 1, b: 1, a: 1}
