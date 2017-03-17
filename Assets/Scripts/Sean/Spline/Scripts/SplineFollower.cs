@@ -28,7 +28,7 @@ namespace YeggQuest.NS_Spline
         public SplineMovementSmoothing movementSmoothing;
         public bool rotationSmoothing = true;
 
-        bool playing;
+        bool playing = false;
         SplineLerpResult result;
 
         void FixedUpdate()
@@ -53,6 +53,9 @@ namespace YeggQuest.NS_Spline
             if (wrapper == null)
                 return;
 
+            if (!playing)
+                return;
+
             float t = (Application.isPlaying ? Time.time : Time.realtimeSinceStartup) + movementSync;
             SplineLerpResult result = FollowLerp(t);
 
@@ -64,6 +67,8 @@ namespace YeggQuest.NS_Spline
 
         void OnValidate()
         {
+            if (!playing)
+                return;
             movementDuration = Mathf.Max(0.1f, movementDuration);
             movementPause = Mathf.Max(0, movementPause);
             appearTime = Mathf.Max(0, appearTime);
@@ -74,6 +79,8 @@ namespace YeggQuest.NS_Spline
 
         SplineLerpResult FollowLerp(float time)
         {
+            if (!playing)
+                return new SplineLerpResult();
             SplineLerpQuery query = new SplineLerpQuery();
 
             float duration = movementDuration + movementPause;
@@ -96,12 +103,6 @@ namespace YeggQuest.NS_Spline
                     else
                         query.t = 1 - t;
                     break;
-                case SplineMovementType.Oneway:
-                    if (Mathf.Approximately(t, 1))
-                        query.t = duration;
-                    else
-                        query.t = t;
-                    break;
             }
 
             query.movementSmoothing = movementSmoothing;
@@ -112,6 +113,9 @@ namespace YeggQuest.NS_Spline
 
         float FollowScale(float time)
         {
+            if (!playing)
+                return 0;
+
             float duration = movementDuration + movementPause;
             float t = Mathf.Repeat(time, duration);
 

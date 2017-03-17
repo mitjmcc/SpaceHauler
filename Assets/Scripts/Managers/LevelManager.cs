@@ -42,6 +42,9 @@ public class LevelManager : MonoBehaviour {
 
     public void gameOver()
     {
+        if (gameover)
+            return;
+
         Player.GetComponent<TruckController>().shutdown();
         StartCoroutine(DelayedAnimation(Player.
             GetComponentInChildren<Camera>().GetComponent<Animation>(),
