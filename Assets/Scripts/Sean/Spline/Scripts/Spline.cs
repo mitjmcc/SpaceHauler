@@ -80,8 +80,7 @@ namespace YeggQuest.NS_Spline
         // which contains the desired parametrized time [0-1] on the spline and some additional interpolation settings.
         // This function then returns a SplineLerpResult which contains all of the interpolated information.
 
-        internal SplineLerpResult
-            Lerp(Transform root, SplineLerpQuery query)
+        internal SplineLerpResult Lerp(Transform root, SplineLerpQuery query)
         {
             // Failsafe - if this spline is degenerate, just return the first point and don't do any other interpolation
 
@@ -152,17 +151,22 @@ namespace YeggQuest.NS_Spline
             result.worldPosition = m.MultiplyPoint3x4(localPos);
 
             // Values
-
             SplineNode s = nodes[section];
             SplineNode e = nodes[section + 1];
             result.worldRotation = Vector3.Lerp(s.worldOrientation, e.worldOrientation, v);
             result.fieldOfView = Mathf.Lerp(s.fieldOfView, e.fieldOfView, v);
-            result.tangent = vertices[section, Mathf.Clamp(segment + 1, 0, segmentCount)] - vertices[section, Mathf.Clamp(segment - 1, 0, segmentCount)];
-            
+            result.tangent =  (Tangent(vertices, section, segment, segmentCount, 0)
+                + Tangent(vertices, section, segment, segmentCount, 1)) / 2;
+
             return result;
         }
 
-        // A different way to get a Lerp
+        // Tangent helper function
+        Vector3 Tangent(Vector3[,] vertices, int section, int segment, int segmentCount, int offset)
+        {
+            return vertices[section, Mathf.Clamp(segment + 1 + offset, 0, segmentCount)]
+                - vertices[section, Mathf.Clamp(segment - 1 + offset, 0, segmentCount)];
+        }
 
 
         // Gets the entrance into the spline.

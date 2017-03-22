@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AsteroidCollision : MonoBehaviour {
 
-    string str = "Player";
-    float pitchRange = .2f;
+    protected string str = "Player";
+    protected float pitchRange = .2f;
 
     private void Awake()
     {
@@ -20,7 +20,7 @@ public class AsteroidCollision : MonoBehaviour {
             other.GetComponent<ShakeObject>().Shake((other.transform.position - transform.position).normalized);
             GetComponent<AudioSource>().pitch += Random.Range(-pitchRange, pitchRange);
             GetComponent<AudioSource>().Play();
-            Destroy(gameObject, .8f);
+            Destroy(gameObject, .1f);
         }
     }
 }

@@ -79,12 +79,6 @@ public class TruckController : MonoBehaviour {
         y = getVetical();
         switch (state) {
             case MoveState.STOPPED:
-                // Exit the intro when the player gives input
-                if (InputManager.anyKey)
-                {
-                    follower.Playing(true);
-                    state = MoveState.MOVING;
-                }
                 break;
             case MoveState.MOVING:
                 // Calculate the motion direction vector and scale it by the moveForce
@@ -98,9 +92,9 @@ public class TruckController : MonoBehaviour {
                 // Adjust forward
                 transform.localRotation = Quaternion.Lerp(transform.localRotation,
                     Quaternion.LookRotation(follower.getCurrentTangent()), .01f);
+
                 break;
             case MoveState.END:
-
                 break;
         }
     }
@@ -123,6 +117,12 @@ public class TruckController : MonoBehaviour {
         state = MoveState.END;
         body.velocity = Vector3.zero;
         follower.enabled = false;
+    }
+
+    public void start()
+    {
+        state = MoveState.MOVING;
+        follower.Playing(true);
     }
 
     public void reverse(Vector3 normal)

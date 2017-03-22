@@ -19,12 +19,6 @@ public class Mine : MonoBehaviour {
             transform.LookAt(target.gameObject.transform.position);
             transform.Translate(Vector3.forward * speed);
         }
-
-        if (transform.GetChildCount() == 0)
-        {
-            chase = false;
-            GetComponent<MeshRenderer>().enabled = false;
-        }
     }
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
