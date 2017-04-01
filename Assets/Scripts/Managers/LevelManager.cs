@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour {
 
     public static LevelManager instance;
     public Text Restart, Dialogue;
-    public GameObject GameOver, loadingScreen, DialogueManager;
+    public GameObject GameOver, Survived, loadingScreen, DialogueManager;
 
     GameObject Player;
     Scene menu;
@@ -21,11 +21,7 @@ public class LevelManager : MonoBehaviour {
     }
 	
 	void Update () {
-        // Needs to be moved to an animation
-        if (gameover && Input.GetKeyDown("space"))
-        {
-            backToMenu();
-        }
+        
     }
 
     public void restart()
@@ -42,17 +38,24 @@ public class LevelManager : MonoBehaviour {
 
     public void gameOver()
     {
+        shutdown();
+        StartCoroutine(gameOverGUI(2f));
+    }
+
+    public void survived() {
+        shutdown();
+        StartCoroutine(survivedGUI(2f));
+    }
+
+    private void shutdown() {
         if (gameover)
             return;
-
         Player.GetComponent<TruckController>().shutdown();
         StartCoroutine(DelayedAnimation(Player.
             GetComponentInChildren<Camera>().GetComponent<Animation>(),
             "DollyIn", 1f));
-        StartCoroutine(gameOverGUI(2f));
         Dialogue.gameObject.SetActive(false);
         DialogueManager.SetActive(false);
-
         gameover = true;
     }
 
@@ -66,6 +69,13 @@ public class LevelManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(delay);
         GameOver.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private IEnumerator survivedGUI(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Survived.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
     }
 }

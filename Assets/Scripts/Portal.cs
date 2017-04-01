@@ -10,7 +10,7 @@ public class Portal : MonoBehaviour {
     {
         if (other.gameObject.CompareTag(str))
         {
-            LevelManager.instance.gameOver();
+            LevelManager.instance.survived();
         }
     }
 }
