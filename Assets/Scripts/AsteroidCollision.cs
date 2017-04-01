@@ -20,7 +20,9 @@ public class AsteroidCollision : MonoBehaviour {
             other.GetComponent<ShakeObject>().Shake((other.transform.position - transform.position).normalized);
             GetComponent<AudioSource>().pitch += Random.Range(-pitchRange, pitchRange);
             GetComponent<AudioSource>().Play();
-            Destroy(gameObject, .1f);
+            if (GetComponentInChildren<MeshRenderer>())
+                GetComponentInChildren<MeshRenderer>().enabled = false;
+            Destroy(gameObject, .8f);
         }
     }
 }

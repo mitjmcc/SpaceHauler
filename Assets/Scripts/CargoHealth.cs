@@ -43,4 +43,8 @@ public class CargoHealth : MonoBehaviour {
             cargoText.text = string.Concat("x", cargo);
         }
     }
+
+    public int getCargoAmt() {
+        return cargo;
+    }
 }

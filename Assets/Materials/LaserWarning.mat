@@ -8,10 +8,11 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: LaserWarning
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION
   m_LightmapFlags: 1
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -71,6 +72,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
+        name: _BumpIntensity
+      second: 0.01
+    - first:
         name: _BumpScale
       second: 1
     - first:
@@ -81,13 +85,13 @@ Material:
       second: 1
     - first:
         name: _DstBlend
-      second: 0
+      second: 10
     - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 0.5
+      second: 1
     - first:
         name: _GlossyReflections
       second: 1
@@ -96,13 +100,22 @@ Material:
       second: 0
     - first:
         name: _Mode
-      second: 0
+      second: 3
     - first:
         name: _OcclusionStrength
       second: 1
     - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _RimPower
+      second: 8
+    - first:
+        name: _RimStrength
+      second: 1
+    - first:
+        name: _Smoothness
+      second: 0
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -117,11 +130,14 @@ Material:
       second: 0
     - first:
         name: _ZWrite
-      second: 1
+      second: 0
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 0.97870183, b: 0.22794116, a: 0}
+      second: {r: 1, g: 0, b: 0, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 1, g: 0.36764705, b: 0.36764705, a: 1}
+      second: {r: 1, g: 0, b: 0, a: 1}
+    - first:
+        name: _RimColor
+      second: {r: 1, g: 1, b: 1, a: 1}
