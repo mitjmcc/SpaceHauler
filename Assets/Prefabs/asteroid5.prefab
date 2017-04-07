@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 136989377917880974}
   - component: {fileID: 114852939650922100}
   - component: {fileID: 82653200546107936}
-  - component: {fileID: 114784891257951640}
   m_Layer: 0
   m_Name: asteroid5
   m_TagString: Untagged
@@ -192,17 +191,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114784891257951640
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1955006134639780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 393f008fa424322409172f0dcef5a3f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114852939650922100
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class Laser : MonoBehaviour {
@@ -8,8 +6,6 @@ public class Laser : MonoBehaviour {
 	public float laserAmt, warningAmt, cooldownAmt, initDelay;
     GameObject laser, laserWarning;
 	protected string str = "Player";
-	bool laserOn = false;
-	//Timer laserTime, warningTime;
 
 	int laserState = 3;
     float laserTime;
@@ -17,11 +13,6 @@ public class Laser : MonoBehaviour {
     float cooldownTime;
 	
 	void Awake() {
-        //laserTime = gameObject.AddComponent<Timer>();
-        //warningTime = gameObject.AddComponent<Timer>();
-        //laserTime.stopTimer();
-        //laserTime.setDefaultTimeRemaining(laserAmt);
-        //warningTime.setDefaultTimeRemaining(warningAmt);
         laserTime = laserAmt;
         warningTime = warningAmt;
         cooldownTime = cooldownAmt;
@@ -30,7 +21,6 @@ public class Laser : MonoBehaviour {
 		laser = transform.GetChild(0).gameObject;
 		laserWarning = transform.GetChild(1).gameObject;
         SwitchOff();
-        //warningTime.startTimer();
     }
 
 	void Update () {

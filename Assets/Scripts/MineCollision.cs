@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MineCollision : AsteroidCollision {
 
@@ -8,7 +6,6 @@ public class MineCollision : AsteroidCollision {
     {
         if (other.gameObject.CompareTag(str))
         {
-            Debug.Log("basfg ");
             other.GetComponent<CargoHealth>().loseCargo();
             other.GetComponent<ShakeObject>().Shake((other.transform.position - transform.position).normalized);
             GetComponent<AudioSource>().pitch += Random.Range(-pitchRange, pitchRange);

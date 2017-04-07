@@ -5658,6 +5658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e6be7f78ea2e74a975cde0e37405c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prompt: {fileID: 0}
   events:
     m_PersistentCalls:
       m_Calls:
