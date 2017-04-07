@@ -70,7 +70,7 @@ Transform:
   m_GameObject: {fileID: 1222297253316998}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.999, z: 0}
-  m_LocalScale: {x: 1, y: 1.0000005, z: 100}
+  m_LocalScale: {x: 1, y: 1.0000005, z: 300}
   m_Children: []
   m_Father: {fileID: 4774110062290188}
   m_RootOrder: 1
@@ -83,7 +83,7 @@ Transform:
   m_GameObject: {fileID: 1183572051893462}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.999, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 300}
   m_Children: []
   m_Father: {fileID: 4774110062290188}
   m_RootOrder: 0
@@ -95,14 +95,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1922063709157754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 76, z: 199.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4513017370560888}
   - {fileID: 4005908247040266}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 51.01}
 --- !u!23 &23203589600175254
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -152,8 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07f47e1ff331af49bb6ab7e37861bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserAmt: 5
-  warningAmt: 10
+  laserAmt: 2
+  warningAmt: 2
+  cooldownAmt: 2
+  initDelay: 0
 --- !u!120 &120197345337439638
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -357,7 +359,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1922063709157754}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 100

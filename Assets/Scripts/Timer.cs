@@ -56,11 +56,11 @@ public class Timer : MonoBehaviour {
 
     public void stopTimer()
     {
-        paused = false;
+        paused = true;
     }
 
     public void startTimer() {
-        paused = true;
+        paused = false;
     }
 
 	// Update is called once per frame
