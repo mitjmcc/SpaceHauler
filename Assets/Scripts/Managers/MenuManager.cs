@@ -17,6 +17,7 @@ public class MenuManager : MonoBehaviour {
     public GameObject qualityScreen;
     public GameObject loadingScreen;
     public GameObject levelsScreen;
+    public GameObject creditsScreen;
 
 	void Start () {
         Cursor.lockState = CursorLockMode.None;
@@ -83,11 +84,18 @@ public class MenuManager : MonoBehaviour {
         qualityScreen.SetActive(true);
     }
 
+    public void Credits()
+    {
+        mainScreen.SetActive(false);
+        creditsScreen.SetActive(true);
+    }
+
     public void toMainMenu()
     {
         mainScreen.SetActive(true);
         optionsScreen.SetActive(false);
         levelsScreen.SetActive(false);
+        creditsScreen.SetActive(false);
     }
 
     public void toOptions()
