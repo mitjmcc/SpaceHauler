@@ -31,6 +31,10 @@ namespace YeggQuest.NS_Spline
         bool playing = false;
         SplineLerpResult result;
 
+        public float t;
+        public int currenSection;
+        public int currentSegment;
+
         void FixedUpdate()
         {
             if (wrapper == null)
@@ -39,10 +43,11 @@ namespace YeggQuest.NS_Spline
             if (!playing)
                 return;
 
-            float t = (Application.isPlaying ? Time.time + movementSync : 0);
+            t += Time.deltaTime;
             float scale = (Application.isPlaying ? FollowScale(t) : 1);
             result = FollowLerp(t);
-
+            currenSection = result.section;
+            currentSegment = result.segment;
             transform.position = result.worldPosition;
             transform.rotation = Quaternion.Euler(result.worldRotation);
             transform.localScale = Vector3.one * scale;

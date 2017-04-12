@@ -35,19 +35,13 @@ public class TCUtil
 
     public static Vector2 CartesionToPolar(Vector3 point)
     {
-        Vector2 polar = Vector3.zero;
+        Vector2 polar = Vector2.zero;
 
-        //Calaculate the longitude
-        polar.y = Mathf.Atan2(point.x, point.z);
+        //Calaculate theta
+        polar.y = Mathf.Atan2(point.y, point.x);
 
-        //Calculate the length of XZ
-        float XZ = new Vector2(point.x, point.z).magnitude;
-
-        //Convert
-        polar.x = Mathf.Atan2(-point.z, XZ);
-
-        //Convert to degrees
-        polar *= Mathf.Rad2Deg;
+        //Calculate radius
+        polar.x = Mathf.Sqrt(Mathf.Pow(point.x, 2) + Mathf.Pow(point.y, 2));
 
         return polar;
     }

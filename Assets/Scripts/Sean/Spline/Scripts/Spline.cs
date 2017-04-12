@@ -157,12 +157,14 @@ namespace YeggQuest.NS_Spline
             result.fieldOfView = Mathf.Lerp(s.fieldOfView, e.fieldOfView, v);
             result.tangent =  (Tangent(vertices, section, segment, segmentCount, 0)
                 + Tangent(vertices, section, segment, segmentCount, 1)) / 2;
+            result.section = section;
+            result.segment = segment;
 
             return result;
         }
 
         // Tangent helper function
-        Vector3 Tangent(Vector3[,] vertices, int section, int segment, int segmentCount, int offset)
+        public static Vector3 Tangent(Vector3[,] vertices, int section, int segment, int segmentCount, int offset)
         {
             return vertices[section, Mathf.Clamp(segment + 1 + offset, 0, segmentCount)]
                 - vertices[section, Mathf.Clamp(segment - 1 + offset, 0, segmentCount)];
