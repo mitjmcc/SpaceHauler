@@ -8,6 +8,8 @@ enum MoveState {MOVING, STOPPED, END}
 public class TruckController : MonoBehaviour {
 
     #region PublicVariables
+
+    public bool tubCollision = true;
     public PlayerID player;
     [Header("Camera Options")]
     public Vector2 lookXRestraints;
@@ -76,11 +78,16 @@ public class TruckController : MonoBehaviour {
                 break;
         }
         Vector2 polar = TCUtil.CartesionToPolar(transform.localPosition);
-        if (polar.x >= .90f * tunnelRadius)
-        {
-            transform.localPosition = new Vector3(Mathf.Cos(polar.y) * (.85f * tunnelRadius), 
-                Mathf.Sin(polar.y) * (.85f * tunnelRadius), transform.localPosition.z);
-            GetComponent<CargoHealth>().loseCargo();
+        if (polar.x >= .80f && tubCollision) {
+            
+            // TODO: Warn the player
+
+            if (polar.x >= .90f * tunnelRadius)
+            {
+                transform.localPosition = new Vector3(Mathf.Cos(polar.y) * (.85f * tunnelRadius), 
+                    Mathf.Sin(polar.y) * (.85f * tunnelRadius), transform.localPosition.z);
+                GetComponent<CargoHealth>().loseCargo();
+            }
         }
     }
 
