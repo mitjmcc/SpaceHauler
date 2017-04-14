@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 4552962780150768}
   - component: {fileID: 33667075342627240}
   - component: {fileID: 23143109113969020}
+  - component: {fileID: 95926192941027194}
   m_Layer: 0
   m_Name: Wheel
   m_TagString: Untagged
@@ -3768,6 +3769,23 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851033033319630}
   m_Enabled: 1
+--- !u!95 &95926192941027194
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1216494615801722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c5f5260fc56ec945b01e9193a8ddd69, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!108 &108667853969007376
 Light:
   m_ObjectHideFlags: 1
@@ -3931,6 +3949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7695c45c438ef4db63349d243de8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tubCollision: 1
   player: 0
   lookXRestraints: {x: -70, y: 70}
   lookYRestraints: {x: -60, y: 35}
