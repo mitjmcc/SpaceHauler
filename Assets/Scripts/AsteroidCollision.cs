@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AsteroidCollision : MonoBehaviour {
 
+    public GameObject explosion;
+
     protected string str = "Player";
     protected float pitchRange = .2f;
 
@@ -22,6 +24,7 @@ public class AsteroidCollision : MonoBehaviour {
             GetComponent<AudioSource>().Play();
             if (GetComponentInChildren<MeshRenderer>())
                 GetComponentInChildren<MeshRenderer>().enabled = false;
+            Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(gameObject, .8f);
         }
     }

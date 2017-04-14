@@ -5991,6 +5991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7695c45c438ef4db63349d243de8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tubCollision: 1
   player: 0
   lookXRestraints: {x: -70, y: 70}
   lookYRestraints: {x: -60, y: 35}
@@ -7671,6 +7672,9 @@ MonoBehaviour:
   disappearTime: 0
   movementSmoothing: 1
   rotationSmoothing: 1
+  t: 0
+  currenSection: 0
+  currentSegment: 0
 --- !u!114 &114928978549308600
 MonoBehaviour:
   m_ObjectHideFlags: 1

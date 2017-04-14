@@ -8,6 +8,8 @@ enum MoveState {MOVING, STOPPED, END}
 public class TruckController : MonoBehaviour {
 
     #region PublicVariables
+
+    public bool tubCollision = true;
     public PlayerID player;
     [Header("Camera Options")]
     public Vector2 lookXRestraints;
@@ -33,6 +35,9 @@ public class TruckController : MonoBehaviour {
     Vector3 position;
     Vector3 speed;
     SplineFollower follower;
+    Spline spline;
+
+    int tunnelRadius = 50;
 
     float lookX;
     float lookY;
@@ -46,6 +51,7 @@ public class TruckController : MonoBehaviour {
         body = GetComponent<Rigidbody>();
         follower = GetComponentInParent<YeggQuest.NS_Spline.SplineFollower>();
         follower.Playing(false);
+        spline = follower.wrapper.spline;
     }
     #endregion
 
@@ -71,6 +77,18 @@ public class TruckController : MonoBehaviour {
                 cam.transform.localRotation = rotation;
                 break;
         }
+        Vector2 polar = TCUtil.CartesionToPolar(transform.localPosition);
+        if (polar.x >= .80f && tubCollision) {
+            
+            // TODO: Warn the player
+
+            if (polar.x >= .90f * tunnelRadius)
+            {
+                transform.localPosition = new Vector3(Mathf.Cos(polar.y) * (.85f * tunnelRadius), 
+                    Mathf.Sin(polar.y) * (.85f * tunnelRadius), transform.localPosition.z);
+                GetComponent<CargoHealth>().loseCargo();
+            }
+        }
     }
 
     void FixedUpdate() {
@@ -90,8 +108,29 @@ public class TruckController : MonoBehaviour {
                 // Drag
                 TCUtil.Drag(body, body.velocity, drag);
                 // Adjust forward
+                int sec = follower.currenSection;
+                int seg = follower.currentSegment;
+                // Grab tangents from spline
+                int numOfTangets = 10;
+                Vector3 smoothedTangent = new Vector3(0,0,-5);
+                for (int i = 0; i < numOfTangets; i++)
+                {
+                    smoothedTangent = smoothedTangent + Spline.Tangent(spline.vertices, sec, seg, spline.segmentCount, 0);
+                    seg++;
+                    if(seg >= spline.segmentCount - 1)
+                    {
+                        seg = 0;
+                        sec++;
+                        if(sec >= spline.vertices.GetLength(0))
+                        {
+                            sec = spline.vertices.GetLength(0)-1;
+                            seg = spline.segmentCount - 2;
+                        }
+                    }
+                }
+                smoothedTangent.Normalize();
                 transform.localRotation = Quaternion.Lerp(transform.localRotation,
-                    Quaternion.LookRotation(follower.getCurrentTangent()), .01f);
+                    Quaternion.LookRotation(smoothedTangent), .01f);
 
                 break;
             case MoveState.END:

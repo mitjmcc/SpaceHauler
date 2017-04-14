@@ -19,7 +19,9 @@ public class MusicManager : MonoBehaviour
     {
         float vol = PlayerPrefs.HasKey("Volume") ? PlayerPrefs.GetFloat("Volume") : .5f;
         settings = new global::Settings(vol, 0f, false, null);
-        slider.value = vol;
+        if (slider)
+            slider.value = vol;
+            
         if (music.Length > 0)
         {
             track = track % music.Length;

@@ -1404,6 +1404,7 @@ GameObject:
   - component: {fileID: 1117489615}
   - component: {fileID: 1117489614}
   - component: {fileID: 1117489613}
+  - component: {fileID: 1117489616}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -1468,7 +1469,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1117489612}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 257.87
   simulationSpeed: 1
   looping: 1
   prewarm: 0
@@ -1516,7 +1517,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1808774449
+  randomSeed: -2016248550
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1926,7 +1927,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 100000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -1972,7 +1973,7 @@ ParticleSystem:
     serializedVersion: 3
     enabled: 1
     type: 1
-    radius: 10
+    radius: 34.34
     angle: 25
     length: 5
     boxX: 1
@@ -1989,13 +1990,13 @@ ParticleSystem:
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
-    randomDirectionAmount: 0
-    sphericalDirectionAmount: 0
+    randomDirectionAmount: 0.19
+    sphericalDirectionAmount: 1
   EmissionModule:
     enabled: 1
     serializedVersion: 3
     rateOverTime:
-      scalar: 50
+      scalar: 350
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2563,13 +2564,13 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: -0.009708643
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
         - serializedVersion: 2
           time: 1
-          value: -0.009708643
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4105,6 +4106,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117489616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1117489612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea525b6703a41904684eba3e3eac5eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotateXSpeed: 0
+  RotateYSpeed: 0
+  RotateZSpeed: -0.03
 --- !u!1001 &1156188695
 Prefab:
   m_ObjectHideFlags: 0

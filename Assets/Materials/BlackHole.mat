@@ -72,7 +72,7 @@ Material:
     m_Floats:
     - first:
         name: _BumpIntensity
-      second: 1
+      second: 0.993
     - first:
         name: _BumpScale
       second: 1
@@ -108,10 +108,10 @@ Material:
       second: 0.02
     - first:
         name: _RimPower
-      second: 4.12
+      second: 2.78
     - first:
         name: _RimStrength
-      second: 0.525
+      second: 1
     - first:
         name: _Smoothness
       second: 0.744
