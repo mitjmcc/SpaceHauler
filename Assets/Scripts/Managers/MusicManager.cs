@@ -40,7 +40,6 @@ public class MusicManager : MonoBehaviour
                 track = firstElementIntro
                     ? Mathf.Clamp((track + 1) % music.Length, 1, music.Length - 1)
                     : (track + 1) % music.Length;
-                Debug.Log(track);
             }
             musicSource.clip = music[track];
             musicSource.Play();

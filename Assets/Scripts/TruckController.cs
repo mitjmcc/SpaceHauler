@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using TeamUtility.IO;
 using YeggQuest.NS_Spline;
-using System.Collections;
 
 enum MoveState {MOVING, STOPPED, END}
 
@@ -167,6 +166,10 @@ public class TruckController : MonoBehaviour {
     public void reverse(Vector3 normal)
     {
         body.AddForce(-normal * 300 + Vector3.forward * warpForce, ForceMode.Impulse);
+    }
+
+    public int getState() {
+        return (int) state;
     }
 
     #endregion

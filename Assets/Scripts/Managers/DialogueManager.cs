@@ -20,7 +20,6 @@ public class DialogueManager : MonoBehaviour {
     private float nextText;
 	private string targetText;
 	private string current;
-    private bool finished;
 
     // Use this for initialization
     void Start () {
@@ -37,12 +36,15 @@ public class DialogueManager : MonoBehaviour {
 		if (dialogueDisplay.enabled && current != null) {
 			if (Time.time > nextText) {
 				if (targetText != null) {
-					if (!dialogueDisplay.text.Equals (targetText)) {
+                    if (!dialogueDisplay.text.Equals (targetText)) {
 						dialogueDisplay.text = targetText.Substring (0, dialogueDisplay.text.Length + 1);
 						nextText = nextText + 0.05f;
+                        if (skipLine())
+                            nextLine ();
 					} else {
                         if (current.Equals("<End>")) {
-                            finished = true;
+                            clearText();
+                            LevelManager.instance.shutdownDialogue();
                         } else if (current.Equals ("")) {
 							nextLine ();
 							nextText = Time.time;
@@ -83,8 +85,10 @@ public class DialogueManager : MonoBehaviour {
         }
     }
 
-    public bool dialogueFinished()
-    {
-        return finished;
+    private bool skipLine() {
+        if (TeamUtility.IO.InputManager.GetKey(KeyCode.Space)) {
+            return true;
+        }
+        return false;
     }
 }
