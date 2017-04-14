@@ -52,6 +52,7 @@ public class TruckController : MonoBehaviour {
         follower = GetComponentInParent<YeggQuest.NS_Spline.SplineFollower>();
         follower.Playing(false);
         spline = follower.wrapper.spline;
+        anim = GetComponentInChildren<Animator>();
     }
     #endregion
 
@@ -99,6 +100,9 @@ public class TruckController : MonoBehaviour {
             case MoveState.STOPPED:
                 break;
             case MoveState.MOVING:
+                // Updating the direction animation variable
+                anim.SetFloat("Direction", x);
+
                 // Calculate the motion direction vector and scale it by the moveForce
                 speed = (x * transform.parent.right + y * transform.parent.up) * moveForce;
                 // Clamp the speed
