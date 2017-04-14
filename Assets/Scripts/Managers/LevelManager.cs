@@ -19,10 +19,6 @@ public class LevelManager : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         Player = GameObject.FindGameObjectWithTag("Player");
     }
-	
-	void Update () {
-        
-    }
 
     public void restart()
     {
@@ -47,6 +43,11 @@ public class LevelManager : MonoBehaviour {
         StartCoroutine(survivedGUI(2f));
     }
 
+    public void shutdownDialogue() {
+        Dialogue.gameObject.SetActive(false);
+        DialogueManager.SetActive(false);
+    }
+
     private void shutdown() {
         if (gameover)
             return;
@@ -54,8 +55,7 @@ public class LevelManager : MonoBehaviour {
         StartCoroutine(DelayedAnimation(Player.
             GetComponentInChildren<Camera>().GetComponent<Animation>(),
             "DollyIn", 1f));
-        Dialogue.gameObject.SetActive(false);
-        DialogueManager.SetActive(false);
+        shutdownDialogue();
         gameover = true;
     }
 

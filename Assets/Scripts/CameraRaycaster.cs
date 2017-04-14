@@ -7,7 +7,7 @@ public class CameraRaycaster : MonoBehaviour {
     GameObject o;
     
 	void FixedUpdate () {
-		if (InputManager.GetButtonDown("Submit") && Cast())
+		if (InputManager.GetButton("Submit") && Cast())
         {
             o.GetComponent<CameraRaycastTarget>().Trigger();
         }

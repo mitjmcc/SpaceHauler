@@ -21,7 +21,8 @@ public class BlackHole : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")
+            && other.gameObject.GetComponent<TruckController>().getState() == 0)
         {
             pull = transform.position - other.GetComponent<Rigidbody>().position;
             if (pull.magnitude < deathDistance)
@@ -31,7 +32,7 @@ public class BlackHole : MonoBehaviour {
             }
             force = strength / pull.magnitude;
             dir = pull.normalized;
-            other.gameObject.GetComponent<Rigidbody>().AddForce(force * dir, ForceMode.Force);
+            other.gameObject.GetComponent<Rigidbody>().AddRelativeForce(force * dir, ForceMode.Force);
         }
     }
 }

@@ -35,35 +35,35 @@ public class MenuManager : MonoBehaviour {
     {
         levelsScreen.SetActive(false);
         loadingScreen.SetActive(true);
-        SceneManager.LoadScene(tutorial);
+        SceneManager.LoadScene(level1);
     }
 
     public void Level2()
     {
         levelsScreen.SetActive(false);
         loadingScreen.SetActive(true);
-        SceneManager.LoadScene(tutorial);
+        SceneManager.LoadScene(level2);
     }
 
     public void Level3()
     {
         levelsScreen.SetActive(false);
         loadingScreen.SetActive(true);
-        SceneManager.LoadScene(tutorial);
+        SceneManager.LoadScene(level3);
     }
 
     public void Level4()
     {
         levelsScreen.SetActive(false);
         loadingScreen.SetActive(true);
-        SceneManager.LoadScene(tutorial);
+        SceneManager.LoadScene(level4);
     }
 
     public void Level5()
     {
         levelsScreen.SetActive(false);
         loadingScreen.SetActive(true);
-        SceneManager.LoadScene(tutorial);
+        SceneManager.LoadScene(level5);
     }
 
     public void LevelSelect()
