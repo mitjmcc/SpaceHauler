@@ -97,6 +97,9 @@ public class TruckController : MonoBehaviour {
         y = getVetical();
         switch (state) {
             case MoveState.STOPPED:
+                if (InputManager.GetButton("Submit", player)) {
+                    start();
+                }
                 break;
             case MoveState.MOVING:
                 // Updating the direction animation variable

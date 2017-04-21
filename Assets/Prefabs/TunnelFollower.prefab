@@ -1448,7 +1448,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851033033319630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: 1.4, z: 0.31}
+  m_LocalPosition: {x: -0.61, y: 1.7, z: 0.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4175143772560936}
@@ -3951,8 +3951,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tubCollision: 1
   player: 0
-  lookXRestraints: {x: -70, y: 70}
-  lookYRestraints: {x: -60, y: 35}
+  lookXRestraints: {x: 0, y: 0}
+  lookYRestraints: {x: 0, y: 0}
   lookSpeed: 3
   maxMovementSpeed: 3
   warpForce: 32
@@ -4056,7 +4056,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CLICK ME TO START
+  m_Text: "ENTER TO\n  START"
 --- !u!114 &114522457838223442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4426,7 +4426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -29.95, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.14, y: 1.785}
+  m_AnchoredPosition: {x: -0.14, y: 1.86}
   m_SizeDelta: {x: 990, y: 557}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224697989727483930
@@ -4471,7 +4471,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1760930419536900}
-  m_LocalRotation: {x: 0.13361184, y: -0, z: -0, w: 0.99103373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 0.0009999999, y: 0.0009999999, z: 0.0019999999}
   m_Children:
@@ -4479,9 +4479,9 @@ RectTransform:
   - {fileID: 224327619536975140}
   m_Father: {fileID: 4175143772560936}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 15.357, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.418, y: 1.362}
+  m_AnchoredPosition: {x: -0.418, y: 1.91}
   m_SizeDelta: {x: 990, y: 557}
   m_Pivot: {x: 0.5, y: 0.5}
